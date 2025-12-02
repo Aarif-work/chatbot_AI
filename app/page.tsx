@@ -106,18 +106,19 @@ export default function Home() {
           >
             <div
               className={`max-w-[85%] p-4 rounded-2xl ${m.role === 'user'
-                  ? 'bg-blue-600 text-white rounded-br-none'
-                  : 'glass text-gray-100 rounded-bl-none'
+                ? 'bg-blue-600 text-white rounded-br-none'
+                : 'glass text-gray-100 rounded-bl-none'
                 }`}
             >
-              <ReactMarkdown
-                className="prose prose-invert prose-sm max-w-none"
-                components={{
-                  a: ({ node, ...props }) => <a {...props} className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" />
-                }}
-              >
-                {m.content}
-              </ReactMarkdown>
+              <div className="prose prose-invert prose-sm max-w-none">
+                <ReactMarkdown
+                  components={{
+                    a: ({ node, ...props }) => <a {...props} className="text-blue-300 hover:underline" target="_blank" rel="noopener noreferrer" />
+                  }}
+                >
+                  {m.content}
+                </ReactMarkdown>
+              </div>
             </div>
           </div>
         ))}
