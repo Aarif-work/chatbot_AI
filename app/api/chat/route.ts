@@ -38,25 +38,25 @@ If asked about something not in this context, politely say you don't have that i
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
-    
+
     // Get the last message from the user
     const userMessage = messages[messages.length - 1].content;
 
     // Use the Flash model for speed
-    const model = genAI.getGenerativeModel({ 
-        model: "gemini-1.5-flash",
-        systemInstruction: systemInstruction,
+    const model = genAI.getGenerativeModel({
+      model: "gemini-1.5-flash",
+      systemInstruction: systemInstruction,
     });
 
     const chat = model.startChat({
-        history: messages.slice(0, -1).map((m: any) => ({
-            role: m.role === 'user' ? 'user' : 'model',
-            parts: [{ text: m.content }],
-        })),
+      history: messages.slice(0, -1).map((m: any) => ({
+        role: m.role === 'user' ? 'user' : 'model',
+        parts: [{ text: m.content }],
+      })),
     });
 
     const result = await chat.sendMessageStream(userMessage);
-    
+
     // Create a stream response
     const stream = new ReadableStream({
       async start(controller) {
@@ -79,10 +79,10 @@ export async function POST(req: Request) {
 
     return new NextResponse(stream);
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error processing chat:", error);
     return NextResponse.json(
-      { error: "Internal Server Error" },
+      { error: error.message || "Internal Server Error", details: error.toString() },
       { status: 500 }
     );
   }

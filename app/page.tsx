@@ -87,7 +87,7 @@ export default function Home() {
             <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
               Aarif's Assistant
             </h1>
-            <p className="text-xs text-gray-400">Powered by Gemini 1.5 Flash</p>
+            <p className="text-xs text-gray-400">Powered by Gemini 2.5 Pro</p>
           </div>
         </div>
         <a
