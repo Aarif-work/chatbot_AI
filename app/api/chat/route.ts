@@ -42,9 +42,9 @@ export async function POST(req: Request) {
     // Get the last message from the user
     const userMessage = messages[messages.length - 1].content;
 
-    // Use the Flash model for speed
+    // Use the gemini-2.5-pro model (available with this API key)
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: "gemini-2.5-pro",
       systemInstruction: systemInstruction,
     });
 
